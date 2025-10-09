@@ -24,10 +24,10 @@ data/
 - 4: motorbike
 - 5: van
 
-## Usage
+## Next is
 
 1. Extract dataset to `data/` folder
 2. Run `main.ipynb` to load and process the data
 3. Labels are in YOLO format: `class_id x_center y_center width height` (normalized coordinates)
 
-The notebook loads the files and shows dataset statistics.
+So far the notebook loads the files and shows dataset statistics.
