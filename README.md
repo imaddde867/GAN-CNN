@@ -11,3 +11,5 @@ train/images/  <- actual .jpg/.png files
 train/labels/  <- .txt files with bounding box coordinates
 valid/images/  <- validation images
 valid/labels/  <- validation annotations
+
+ALSO : the class number for cars is 5
