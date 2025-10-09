@@ -13,3 +13,4 @@ valid/images/  <- validation images
 valid/labels/  <- validation annotations
 
 ALSO : the class number for cars is 5
+also : the format of the labels is class + x_center + y_center + width + height
