@@ -14,6 +14,16 @@ For this project, the multi-class problem was simplified to a binary classificat
 
 The dataset is highly imbalanced, with 'not a car' samples significantly outnumbering 'car' samples. This imbalance was a key challenge addressed in the modeling process.
 
+## Dataset Preview
+
+Here is a small preview of the images in the dataset, showing examples of the "car" and "not-car" classes.
+
+### Cars
+<img src="data/train/images/00077.jpg" width="200"/> <img src="data/train/images/00116.jpg" width="200"/> <img src="data/train/images/00241.jpg" width="200"/>
+
+### Not-Cars (Vans, Trucks, etc.)
+<img src="data/train/images/00043_GMC%20Savana%20Van%202012.jpg" width="200"/> <img src="data/train/images/00175_Ford%20E-Series%20Wagon%20Van%202012.jpg" width="200"/> <img src="data/train/images/indian-truck-lorry-on-highway-260nw-1987912226.jpg" width="200"/>
+
 ## Results
 
 | Metric          | Baseline | Optimized | Improvement |
