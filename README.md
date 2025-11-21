@@ -1,33 +1,15 @@
-# GAN-CNN Vehicle Detection
+# Car Detection with a Convolutional Neural Network
 
-Vehicle detection using GANs and CNNs. Detects 6 vehicle types: cars, trucks, buses, motorbikes, three-wheelers, and vans.
+This project documents the process of building a CNN to distinguish cars from other vehicles. The work is presented in the `mile_stone_2.ipynb` notebook.
 
-## Dataset
+The initial model performed poorly, and analysis revealed a significant class imbalance in the dataset. The final, optimized model addresses this by using class weights and regularization techniques (Dropout and L2).
 
-Download the dataset and extract it to a `data` folder:
-https://storage.googleapis.com/kaggle-data-sets/2701470/4649306/bundle/archive.zip
+The best performing model is saved in `best_model.h5`.
 
-Structure should be:
-```
-data/
-├── train/images/  (2100 images)
-├── train/labels/  (YOLO format annotations)
-├── valid/images/  (900 images)
-└── valid/labels/
-```
+## Results
 
-## Classes
-- 0: car
-- 1: threewheel  
-- 2: bus
-- 3: truck
-- 4: motorbike
-- 5: van
-
-## Next is
-
-1. Extract dataset to `data/` folder
-2. Run `main.ipynb` to load and process the data
-3. Labels are in YOLO format: `class_id x_center y_center width height` (normalized coordinates)
-
-So far the notebook loads the files and shows dataset statistics.
+| Metric          | Baseline | Optimized | Improvement |
+|-----------------|----------|-----------|-------------|
+| Overall Accuracy| 82.7%    | 91.1%     | +8.4%       |
+| Car Precision   | 50.8%    | 88.9%     | +38.1%      |
+| Car Recall      | 41.0%    | 56.4%     | +15.4%      |
