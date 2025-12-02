@@ -59,34 +59,6 @@
 
 ---
 
-## Quickstart
-
-1. **Environment**
-   ```bash
-   python -m venv .venv && source .venv/bin/activate
-   pip install -r requirements.txt  # tensorflow>=2.15, torch, ultralytics, pillow, etc.
-   ```
-2. **Notebook Execution**  
-   Launch Jupyter/Lab, open `car_classification_cnn.ipynb`, and run cells sequentially (data prep → CNN → YOLO → stylization).
-3. **YOLO CLI (optional)**
-   ```bash
-   yolo detect train data=data.yaml model=yolov5su.pt imgsz=416 epochs=50 batch=16 device=mps name=train_optimized
-   ```
-4. **Inference Snippets**
-   ```python
-   # Binary classifier
-   from tensorflow import keras
-   model = keras.models.load_model("best_model.h5")
-   prob = model.predict(preprocessed_batch)
-
-   # YOLO detector
-   from ultralytics import YOLO
-   yolo = YOLO("runs/detect/train_optimized/weights/best.pt")
-   yolo("data/valid/images/00110.jpg", save=True)
-   ```
-
----
-
 ## Why It Matters
 
 - **Traceable milestones** – All stages, metrics, and artifacts are captured in one notebook tied directly to the rubric.
