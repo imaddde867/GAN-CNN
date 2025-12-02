@@ -6,7 +6,7 @@
 [![Ultralytics YOLO](https://img.shields.io/badge/Ultralytics-YOLOv5-0099D3?logo=github&logoColor=white)](#)
 [![Core ML](https://img.shields.io/badge/Apple-Core%20ML-000000?logo=apple&logoColor=white)](#)
 
-`car_classification_cnn.ipynb` compresses all four ITS Learning milestones into a single reproducible workflow: dataset curation, CNN bias/variance diagnosis, YOLOv5 fine-tuning, and PencilSketchGAN stylization. The repo delivers both production-grade detectors (`best_model.h5`, `best.pt`, `best.mlpackage`) and a creative pen-and-ink rendering stage powered by YOLO crops.
+`car_classification_cnn.ipynb` compresses all four project milestones into a single reproducible workflow: dataset curation, CNN bias/variance diagnosis, YOLOv5 fine-tuning, and PencilSketchGAN stylization. The repo delivers both production-grade detectors (`best_model.h5`, `best.pt`, `best.mlpackage`) and a creative pen-and-ink rendering stage powered by YOLO crops.
 
 ---
 
