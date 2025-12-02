@@ -55,7 +55,7 @@
 - **M4 – YOLO → PencilSketchGAN**  
   YOLO crops feed a lightweight generator/discriminator that performs color-dodge edge emphasis plus procedural cross-hatching, creating pen-and-pencil composites saved to `results/milestone4/`.
 
-![PencilSketchGAN samples](results/milestone4/stylized_04129.jpg)
+![PencilSketchGAN samples](results/milestone4/stylized_07504.jpg)
 
 ---
 
