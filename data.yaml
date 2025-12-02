@@ -6,6 +6,6 @@ names:
 - van
 - other
 nc: 6
-path: /Users/riteshbhandari/Desktop/GitHub/GAN-CNN
+path: /Users/imadeddine/Documents/GitHub/GAN-CNN-gangang
 train: data/train/images
 val: data/valid/images
