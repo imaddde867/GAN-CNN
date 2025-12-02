@@ -18,7 +18,7 @@
         ↓
 [Milestone 3] YOLOv5 fine-tuning          → runs/detect/train_optimized/weights/best.pt
         ↓
-[Milestone 4] PencilSketchGAN stylization → results/milestone4/
+[Milestone 4] NeoSketchGAN stylization → results/milestone4/
 ```
 
 ![YOLO validation batches](runs/detect/train_optimized/val_batch0_pred.jpg)
