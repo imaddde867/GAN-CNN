@@ -6,7 +6,7 @@
 [![Ultralytics YOLO](https://img.shields.io/badge/Ultralytics-YOLOv5-0099D3?logo=github&logoColor=white)](#)
 [![Core ML](https://img.shields.io/badge/Apple-Core%20ML-000000?logo=apple&logoColor=white)](#)
 
-`car_classification_cnn.ipynb` compresses all four project milestones into a single reproducible workflow: dataset curation, CNN bias/variance diagnosis, YOLOv5 fine-tuning, and PencilSketchGAN stylization. The repo delivers both production-grade detectors (`best_model.h5`, `best.pt`, `best.mlpackage`) and a creative pen-and-ink rendering stage powered by YOLO crops.
+`car_classification_cnn.ipynb` compresses all four project milestones into a single reproducible workflow: dataset curation, CNN bias/variance diagnosis, YOLOv5 fine-tuning, and VividNeonTexture stylization. The repo delivers both production-grade detectors (`best_model.h5`, `best.pt`, `best.mlpackage`) and a neon-ink rendering stage powered by YOLO crops.
 
 ---
 
@@ -18,7 +18,7 @@
         ↓
 [Milestone 3] YOLOv5 fine-tuning          → runs/detect/train_optimized/weights/best.pt
         ↓
-[Milestone 4] NeoSketchGAN stylization → results/milestone4/
+[Milestone 4] VividNeonTexture stylization → results/milestone4/
 ```
 
 ![YOLO validation batches](runs/detect/train_optimized/val_batch0_pred.jpg)
@@ -34,7 +34,7 @@
 | `data/` | Train/validation images + YOLO labels (`class_id x_center y_center width height`). |
 | `best_model.h5` | Optimized binary classifier checkpoint restored via EarlyStopping. |
 | `runs/detect/train_optimized/` | Ultralytics logs, plots, and `weights/{best.pt,last.pt,best.mlpackage}`. |
-| `results/milestone4/` | Composite images from the PencilSketchGAN pipeline. |
+| `results/milestone4/` | Composite images from the VividNeonTexture pipeline. |
 | `data.yaml` | Auto-generated YOLO config pointing to this dataset. |
 
 ---
@@ -52,10 +52,10 @@
 - **M3 – YOLO Object Detection**  
   Ultralytics YOLOv5s on Apple M4 (`device='mps'`, AMP, disk cache). Best checkpoint reaches mAP50-95 = **0.907** and ships with Core ML export. Confusion matrices and metrics live under `runs/detect/train_optimized/`.
 
-- **M4 – YOLO → PencilSketchGAN**  
-  YOLO crops feed a lightweight generator/discriminator that performs color-dodge edge emphasis plus procedural cross-hatching, creating pen-and-pencil composites saved to `results/milestone4/`.
+- **M4 – YOLO → VividNeonTexture**  
+  YOLO crops feed a lightweight generator/discriminator that layers neon glows and chrome textures, creating vivid composites saved to `results/milestone4/`.
 
-![PencilSketchGAN samples](results/milestone4/stylized_07504.jpg)
+![VividNeonTexture samples](results/milestone4/stylized_07504.jpg)
 
 ---
 
@@ -63,4 +63,4 @@
 
 - **Traceable milestones** – All stages, metrics, and artifacts are captured in one notebook tied directly to the rubric.
 - **Apple Silicon readiness** – YOLO training uses M-series acceleration and exports to Core ML for on-device deployment.
-- **Creative enhancement** – PencilSketchGAN showcases how YOLO outputs can be reused for expressive storytelling, yielding assets that complement quantitative evaluation.
+- **Creative enhancement** – VividNeonTexture showcases how YOLO outputs can be reused for expressive storytelling, yielding assets that complement quantitative evaluation.
