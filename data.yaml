@@ -1,0 +1,11 @@
+names:
+- car
+- motorcycle
+- truck
+- bus
+- van
+- other
+nc: 6
+path: /Users/riteshbhandari/Desktop/GitHub/GAN-CNN
+train: data/train/images
+val: data/valid/images
