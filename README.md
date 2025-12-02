@@ -64,3 +64,15 @@
 - **Traceable milestones** – All stages, metrics, and artifacts are captured in one notebook tied directly to the rubric.
 - **Apple Silicon readiness** – YOLO training uses M-series acceleration and exports to Core ML for on-device deployment.
 - **Creative enhancement** – VividNeonTexture showcases how YOLO outputs can be reused for expressive storytelling, yielding assets that complement quantitative evaluation.
+
+---
+
+## Notebook → PDF (no LaTeX toolchain)
+
+The lab image of TeX Live is missing the `texmf-dist` tree, so `xelatex`/`pdflatex` cannot build `xelatex.fmt` and nbconvert throws the 500 error shown above. Use the repo-supplied helper to export PDF without LaTeX:
+
+```bash
+python tools/export_notebook_pdf.py car_classification_cnn.ipynb
+```
+
+This runs `jupyter nbconvert --to html --template lab` and pipes the HTML through `prince` to emit `car_classification_cnn.pdf` next to the notebook. You can override the target via `-o path/to/output.pdf` and keep the intermediate HTML with `--keep-html`.
