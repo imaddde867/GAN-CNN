@@ -15,6 +15,7 @@ YOLO-formatted labels ──────────┤
 ```
 
 ![YOLO validation batches](runs/detect/train_optimized/val_batch0_pred.jpg)
+![YOLO training curves](runs/detect/train_optimized/results.png)
 
 ---
 
@@ -46,12 +47,14 @@ YOLO-formatted labels ──────────┤
 ### Milestone 3 – YOLO Object Detection
 - Ultralytics YOLOv5s fine-tuned with Apple M4 acceleration (`device='mps'`, AMP ON, caching).  
 - Best checkpoint: `runs/detect/train_optimized/weights/best.pt` (mAP50-95 = **0.907**).  
-- Visual diagnostics: `results.png`, `confusion_matrix.png`, and per-batch predictions (see figure above).
+- Visual diagnostics: validation batches (above), learning curves (`results.png`), and confusion matrices (`confusion_matrix.png`, `confusion_matrix_normalized.png`).
 
 ### Milestone 4 – YOLO → PencilSketchGAN
 - Detections from Milestone 3 feed into a custom `PencilSketchGAN` (edge emphasis + procedural hatching) to mimic a CycleGAN pencil transfer.
 - Stylized patches are pasted back into the original scene, yielding gallery-ready composites (saved under `results/milestone4/` and previewed in the notebook).
 - Every run samples new validation images, so `results/milestone4/` quickly fills with unique “pen-and-ink” renderings that complement the quantitative YOLO metrics above.
+
+![Stylized composites](results/milestone4/stylized_04129.jpg)
 
 ---
 
