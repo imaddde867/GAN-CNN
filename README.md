@@ -1,62 +1,61 @@
-# GAN-CNN: From Data Curation to Stylized Detections
+# GAN-CNN: Stylized Vehicle Intelligence
 
-`car_classification_cnn.ipynb` consolidates the four ITS Learning milestones into a single, reproducible workflow: dataset curation, CNN diagnosis and optimization, YOLOv5 fine-tuning, and a GAN-inspired stylization stage. The repository demonstrates the complete progression from raw annotations to deployable detectors and stylized composites.
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](#)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-FF6F00?logo=tensorflow&logoColor=white)](#)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.x-EE4C2C?logo=pytorch&logoColor=white)](#)
+[![Ultralytics YOLO](https://img.shields.io/badge/Ultralytics-YOLOv5-0099D3?logo=github&logoColor=white)](#)
+[![Core ML](https://img.shields.io/badge/Apple-Core%20ML-000000?logo=apple&logoColor=white)](#)
+
+`car_classification_cnn.ipynb` compresses all four ITS Learning milestones into a single reproducible workflow: dataset curation, CNN bias/variance diagnosis, YOLOv5 fine-tuning, and PencilSketchGAN stylization. The repo delivers both production-grade detectors (`best_model.h5`, `best.pt`, `best.mlpackage`) and a creative pen-and-ink rendering stage powered by YOLO crops.
 
 ---
 
-## System Snapshot
-
+## Pipeline
 ```
-[Milestone 1] Data curation → YOLO-format annotations
+[Milestone 1] Curate + annotate dataset (YOLO TXT format)
         ↓
-[Milestone 2] Binary CNN training → best_model.h5
+[Milestone 2] Binary CNN (car vs. other)  → best_model.h5
         ↓
-[Milestone 3] YOLOv5 fine-tuning → runs/detect/train_optimized/weights/best.pt
+[Milestone 3] YOLOv5 fine-tuning          → runs/detect/train_optimized/weights/best.pt
         ↓
 [Milestone 4] PencilSketchGAN stylization → results/milestone4/
 ```
 
 ![YOLO validation batches](runs/detect/train_optimized/val_batch0_pred.jpg)
-![YOLO training curves](runs/detect/train_optimized/results.png)
+![Training curves](runs/detect/train_optimized/results.png)
 
 ---
 
-## Repository Tour
+## Repository Map
 
-| Path | Description |
+| Path | Purpose |
 | --- | --- |
-| `car_classification_cnn.ipynb` | Notebook covering Milestones 1–4: data preparation, CNN bias/variance diagnosis, YOLO fine-tuning, GAN stylization. |
-| `data/` | Train/valid images + YOLO labels (`class_id x_center y_center width height`). |
-| `best_model.h5` | Optimized binary classifier checkpoint (cars vs. everything else). |
-| `runs/detect/train_optimized/` | Ultralytics artifacts (curves, metrics, Core ML export, `weights/best.pt`). |
+| `car_classification_cnn.ipynb` | End-to-end notebook for Milestones 1–4 (data prep, CNN, YOLO, stylization). |
+| `data/` | Train/validation images + YOLO labels (`class_id x_center y_center width height`). |
+| `best_model.h5` | Optimized binary classifier checkpoint restored via EarlyStopping. |
+| `runs/detect/train_optimized/` | Ultralytics logs, plots, and `weights/{best.pt,last.pt,best.mlpackage}`. |
 | `results/milestone4/` | Composite images from the PencilSketchGAN pipeline. |
 | `data.yaml` | Auto-generated YOLO config pointing to this dataset. |
 
 ---
 
-## Milestones & Highlights
+## Milestones at a Glance
 
-### Milestone 1 – Data Preparation
-- 2,100 train + 900 validation images spanning seven vehicle classes.
-- Every sample carries YOLO TXT annotations; at least 10% of the set intentionally lacks the target car to teach generalization.
-- Zippable deliverable: `data/train` and `data/valid` folders already mirror the required submission layout.
+- **M1 – Data Preparation**  
+  2,100 train + 900 validation images across six vehicle classes, all labeled in YOLO TXT format with ≥10% negative examples to encourage generalization.
 
-### Milestone 2 – CNN Optimization
-- Baseline: four Conv blocks, no regularization — exposes 82.7% accuracy but only 41% recall on cars.
-- Diagnosis: confusion matrix + metrics identify class imbalance, so we apply class weights (4.96× penalty on car errors), Dropout 0.4, L2=0.01, EarlyStopping, ModelCheckpoint, ReduceLROnPlateau.
-- Final metrics: 91.1% accuracy, 88.9% precision, 56.4% recall on cars — all logged in the notebook plus saved checkpoint `best_model.h5`.
+- **M2 – CNN Optimization**  
+  Baseline: 82.7% accuracy but only 41% recall on cars.  
+  Remedy: class weights (4.96× car penalty), Dropout 0.4, L2=0.01, EarlyStopping, ModelCheckpoint, ReduceLROnPlateau.  
+  Result: 91.1% accuracy, 88.9% precision, 56.4% recall on cars; weights saved to `best_model.h5`.
 
-### Milestone 3 – YOLO Object Detection
-- Ultralytics YOLOv5s fine-tuned with Apple M4 acceleration (`device='mps'`, AMP ON, caching).  
-- Best checkpoint: `runs/detect/train_optimized/weights/best.pt` (mAP50-95 = **0.907**).  
-- Visual diagnostics: validation batches (above), learning curves (`results.png`), and confusion matrices (`confusion_matrix.png`, `confusion_matrix_normalized.png`).
+- **M3 – YOLO Object Detection**  
+  Ultralytics YOLOv5s on Apple M4 (`device='mps'`, AMP, disk cache). Best checkpoint reaches mAP50-95 = **0.907** and ships with Core ML export. Confusion matrices and metrics live under `runs/detect/train_optimized/`.
 
-### Milestone 4 – YOLO → PencilSketchGAN
-- Detections from Milestone 3 feed into a custom `PencilSketchGAN` (edge emphasis + procedural hatching) to mimic a CycleGAN pencil transfer.
-- Stylized patches are pasted back into the original scene, yielding gallery-ready composites (saved under `results/milestone4/` and previewed in the notebook).
-- Every run samples new validation images, so `results/milestone4/` quickly fills with unique “pen-and-ink” renderings that complement the quantitative YOLO metrics above.
+- **M4 – YOLO → PencilSketchGAN**  
+  YOLO crops feed a lightweight generator/discriminator that performs color-dodge edge emphasis plus procedural cross-hatching, creating pen-and-pencil composites saved to `results/milestone4/`.
 
-![Stylized composites](results/milestone4/stylized_04129.jpg)
+![PencilSketchGAN samples](results/milestone4/stylized_04129.jpg)
 
 ---
 
@@ -67,16 +66,13 @@
    python -m venv .venv && source .venv/bin/activate
    pip install -r requirements.txt  # tensorflow>=2.15, torch, ultralytics, pillow, etc.
    ```
-
-2. **Notebook Run**  
-   Launch Jupyter/Lab, open `car_classification_cnn.ipynb`, and execute cells sequentially to reproduce every milestone (data prep → CNN → YOLO → GAN stylization).
-
+2. **Notebook Execution**  
+   Launch Jupyter/Lab, open `car_classification_cnn.ipynb`, and run cells sequentially (data prep → CNN → YOLO → stylization).
 3. **YOLO CLI (optional)**
    ```bash
    yolo detect train data=data.yaml model=yolov5su.pt imgsz=416 epochs=50 batch=16 device=mps name=train_optimized
    ```
-
-4. **Inference Examples**
+4. **Inference Snippets**
    ```python
    # Binary classifier
    from tensorflow import keras
@@ -91,10 +87,8 @@
 
 ---
 
-## Why This Project Stands Out
+## Why It Matters
 
-- **End-to-end traceability** — Each milestone is documented in one notebook with metrics, visualizations, and saved artifacts aligned to the rubric.
-- **Apple Silicon readiness** — YOLO training and exports target M-series hardware, including Core ML packaging for on-device deployment.
-- **Creative finish** — Milestone 4 extends beyond detection, demonstrating a reusable stylization pipeline that builds on YOLO outputs to produce presentation-quality imagery.
-
-Refer to the notebook for execution order, configuration details, and reproducibility notes.
+- **Traceable milestones** – All stages, metrics, and artifacts are captured in one notebook tied directly to the rubric.
+- **Apple Silicon readiness** – YOLO training uses M-series acceleration and exports to Core ML for on-device deployment.
+- **Creative enhancement** – PencilSketchGAN showcases how YOLO outputs can be reused for expressive storytelling, yielding assets that complement quantitative evaluation.
