@@ -7,11 +7,13 @@
 ## System Snapshot
 
 ```
-Data (cars vs. other vehicles) ─┐
-                                ├─→ Binary CNN (Milestone 2) ─→ best_model.h5
-YOLO-formatted labels ──────────┤
-                                ├─→ YOLOv5 fine-tuning (Milestone 3) ─→ best.pt / best.mlpackage
-                                └─→ PencilSketchGAN stylization (Milestone 4) ─→ results/milestone4
+[Milestone 1] Data curation → YOLO-format annotations
+        ↓
+[Milestone 2] Binary CNN training → best_model.h5
+        ↓
+[Milestone 3] YOLOv5 fine-tuning → runs/detect/train_optimized/weights/best.pt
+        ↓
+[Milestone 4] PencilSketchGAN stylization → results/milestone4/
 ```
 
 ![YOLO validation batches](runs/detect/train_optimized/val_batch0_pred.jpg)
