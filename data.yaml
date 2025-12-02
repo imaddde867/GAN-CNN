@@ -1,10 +1,10 @@
 names:
 - car
-- motorcycle
-- truck
+- threewheel
 - bus
+- truck
+- motorbike
 - van
-- other
 nc: 6
 path: /Users/imadeddine/Documents/GitHub/GAN-CNN-gangang
 train: data/train/images
